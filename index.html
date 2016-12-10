@@ -21,30 +21,48 @@
         text-decoration: none;
     }
 </style>
-<a href="/light/on">
-    <button>불켜기</button>
-</a>
-<a href="/light/off">
+<a href="/light/action/0">
     <button>불끄기</button>
 </a>
+<a href="/light/action/1">
+    <button>불켜기</button>
+</a>
 <br>
-<a href="/light/off">
-    <button></button>
+<a href="/light/action/1/blue">
+    <button>불켜기(파란색)</button>
+</a>
+<a href="/light/action/1/green">
+    <button>불켜기(초록색)</button>
+</a>
+<br>
+<a href="/light/action/1/red">
+    <button>불켜기(빨간색)</button>
+</a>
+<br>
+<a href="/secure/action/0">
+    <button>경비모드 해제</button>
+</a>
+<a href="/secure/action/1">
+    <button>경비모드 실행</button>
+</a>
+<br>
+<a href="/secure/retrieve">
+    <button>경비상황 보고</button>
+</a>
+<br>
+<a href="/dht/action/0">
+    <button>온도습도 측정 중지</button>
+</a>
+<a href="/dht/action/1">
+    <button>온도습도 측정 시작</button>
 </a>
 <br>
 
-<a href="/getStatus/temp">
+<a href="/dht/retrieve/0">
     <button>온도 받아오기</button>
 </a>
-<a href="/getStatus/humi">
+<a href="/dht/retrieve/1">
     <button>습도 받아오기</button>
-</a>
-<br>
-<a href="/secureMode/on">
-    <button>경비모드 실행</button>
-</a>
-<a href="/secureMode/off">
-    <button>경비모드 해제</button>
 </a>
 <br>
 <a href="/gas/lock">
