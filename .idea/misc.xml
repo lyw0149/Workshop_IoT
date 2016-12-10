@@ -7,7 +7,6 @@
     <exe-path />
     <config-path />
   </component>
-  <component name="JscsConfiguration" jscs-preset="airbnb" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
     <OptionsSetting value="true" id="Remove" />
