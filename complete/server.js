@@ -151,11 +151,15 @@ app.get('/secure/action/1', function (req, res) {
 });
 
 app.get('/secure/retrieve', function (req, res) {
-  if (lastSecure == undefined) {
+  if (homeData.secure == undefined) {
     res.set(resConfig).end('최근 측정된 데이터가 없습니다.');
   }
 
-  res.set(resConfig).end(lastSecure);
+  if (homeData.secure == 0) {
+    res.set(resConfig).end('감지됨');
+  }else {
+    res.set(resConfig).end('감지되지 않음');
+  }
 });
 
 app.get('/dht/action/0', function (req, res) {
