@@ -2,6 +2,7 @@ var express = require('express');
 var serialPort = require('serialport');
 
 var app = express();
+var resConfig = { 'content-type': 'application/json; charset=utf-8' };
 
 var homeData = {
   data: undefined,
@@ -20,8 +21,8 @@ serialPort.list(function (err, ports) {
   });
 });
 
-var port = new serialPort('/dev/cu.wchusbserial1420',{
-  baudRate: 115200
+var port = new serialPort('/dev/cu.wchusbserial1410', {
+  baudRate: 115200,
 });
 
 port.on('open', function () {
@@ -62,143 +63,143 @@ function mergeOptions(obj1, obj2) {
   return obj3;
 }
 
-
 app.get('/', function (req, res) {
   res.sendFile(__dirname + '/' + 'index.html');
 });
 
 app.get('/light/action/0', function (req, res) {
-  res.setEncoding('utf8');
   port.write('led:0\n', function (err) {
     if (err) {
-      res.end(err.message);
+      res.set(resConfig).end(err.message);
       return;
     }
 
-    res.end('불을 껐습니다.');
+    res.set(resConfig).end('불을 껐습니다.');
   });
 
 });
 
 app.get('/light/action/1', function (req, res) {
-  res.setEncoding('utf8');
   port.write('led:1\n', function (err) {
     if (err) {
-      res.end(err.message);
+      res.set(resConfig).end(err.message);
       return;
     }
 
-    res.end('불을 켰습니다.');
+    res.set(resConfig).end('불을 켰습니다.');
   });
 });
 
 app.get('/light/action/1/blue', function (req, res) {
-  res.setEncoding('utf8');
+
   port.write('led:2\n', function (err) {
     if (err) {
-      res.end(err.message);
+      res.set(resConfig).end(err.message);
       return;
     }
 
-    res.end('파란색 불을 켰습니다.');
+    res.set(resConfig).end('파란색 불을 켰습니다.');
   });
 });
 
 app.get('/light/action/1/green', function (req, res) {
-  res.setEncoding('utf8');
+
   port.write('led:3\n', function (err) {
     if (err) {
-      res.end(err.message);
+      res.set(resConfig).end(err.message);
       return;
     }
 
-    res.end('초록색 불을 켰습니다.');
+    res.set(resConfig).end('초록색 불을 켰습니다.');
   });
 });
 
 app.get('/light/action/1/red', function (req, res) {
-  res.setEncoding('utf8');
+
   port.write('led:4\n', function (err) {
     if (err) {
-      res.end(err.message);
+      res.set(resConfig).end(err.message);
       return;
     }
 
-    res.end('빨간색 불을 켰습니다.');
+    res.set(resConfig).end('빨간색 불을 켰습니다.');
   });
 });
 
 app.get('/secure/action/0', function (req, res) {
   port.write('secure:0\n', function (err) {
     if (err) {
-      res.end(err.message);
+      res.set(resConfig).end(err.message);
       return;
     }
-    res.end('경비모드를 해제하였습니다.');
+
+    res.set(resConfig).end('경비모드를 해제하였습니다.');
   });
 });
 
 app.get('/secure/action/1', function (req, res) {
-  res.setEncoding('utf8');
+
   port.write('secure:1\n', function (err) {
     if (err) {
-      res.end(err.message);
+      res.set(resConfig).end(err.message);
       return;
     }
-    res.end('경비모드를 작동시켰습니다.');
+
+    res.set(resConfig).end('경비모드를 작동시켰습니다.');
 
   });
 });
 
 app.get('/secure/retrieve', function (req, res) {
   if (lastSecure == undefined) {
-    res.end('최근 측정된 데이터가 없습니다.');
+    res.set(resConfig).end('최근 측정된 데이터가 없습니다.');
   }
 
-  res.end(lastSecure);
+  res.set(resConfig).end(lastSecure);
 });
 
 app.get('/dht/action/0', function (req, res) {
-  res.setEncoding('utf8');
+
   port.write('dht:0\n', function (err) {
     if (err) {
-      res.end(err.message);
+      res.set(resConfig).end(err.message);
       return;
     }
-    res.end('온도 및 습도 측정을 중지하였습니다.');
+
+    res.set(resConfig).end('온도 및 습도 측정을 중지하였습니다.');
   });
 });
 
 app.get('/dht/action/1', function (req, res) {
-  res.setEncoding('utf8');
+
   port.write('dht:1\n', function (err) {
     if (err) {
-      res.end(err.message);
+      res.set(resConfig).end(err.message);
       return;
     }
 
-    res.end('온도 및 습도 측정을 시작하였습니다.');
+    res.set(resConfig).end('온도 및 습도 측정을 시작하였습니다.');
   });
 });
 
 app.get('/dht/retrieve/0', function (req, res) {
-  res.setEncoding('utf8');
+
   if (homeData.temper == undefined) {
-    res.end('최근 측정된 데이터가 없습니다.');
+    res.set(resConfig).end('최근 측정된 데이터가 없습니다.');
     return;
   }
 
-  res.end(homeData.date + ' : ' + homeData.temper +  '도');
+  res.set(resConfig).end(homeData.date + ' : ' + homeData.temper +  '도');
 });
 
 app.get('/dht/retrieve/1', function (req, res) {
-  res.setEncoding('utf8');
+
   if (homeData.humid == undefined) {
-    res.end('최근 측정된 데이터가 없습니다.');
+    res.set(resConfig).end('최근 측정된 데이터가 없습니다.');
     return;
   }
 
-  res.end(homeData.date + ' : ' + homeData.humid + '%');
+  res.set(resConfig).end(homeData.date + ' : ' + homeData.humid + '%');
 });
 
 app.listen(80, function () {
