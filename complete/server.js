@@ -68,6 +68,7 @@ app.get('/', function (req, res) {
 });
 
 app.get('/light/action/0', function (req, res) {
+  res.setEncoding('utf8');
   port.write('led:0\n', function (err) {
     if (err) {
       res.end(err.message);
@@ -80,6 +81,7 @@ app.get('/light/action/0', function (req, res) {
 });
 
 app.get('/light/action/1', function (req, res) {
+  res.setEncoding('utf8');
   port.write('led:1\n', function (err) {
     if (err) {
       res.end(err.message);
@@ -91,6 +93,7 @@ app.get('/light/action/1', function (req, res) {
 });
 
 app.get('/light/action/1/blue', function (req, res) {
+  res.setEncoding('utf8');
   port.write('led:2\n', function (err) {
     if (err) {
       res.end(err.message);
@@ -102,6 +105,7 @@ app.get('/light/action/1/blue', function (req, res) {
 });
 
 app.get('/light/action/1/green', function (req, res) {
+  res.setEncoding('utf8');
   port.write('led:3\n', function (err) {
     if (err) {
       res.end(err.message);
@@ -113,6 +117,7 @@ app.get('/light/action/1/green', function (req, res) {
 });
 
 app.get('/light/action/1/red', function (req, res) {
+  res.setEncoding('utf8');
   port.write('led:4\n', function (err) {
     if (err) {
       res.end(err.message);
@@ -129,18 +134,17 @@ app.get('/secure/action/0', function (req, res) {
       res.end(err.message);
       return;
     }
-
     res.end('경비모드를 해제하였습니다.');
   });
 });
 
 app.get('/secure/action/1', function (req, res) {
+  res.setEncoding('utf8');
   port.write('secure:1\n', function (err) {
     if (err) {
       res.end(err.message);
       return;
     }
-
     res.end('경비모드를 작동시켰습니다.');
 
   });
@@ -155,17 +159,18 @@ app.get('/secure/retrieve', function (req, res) {
 });
 
 app.get('/dht/action/0', function (req, res) {
+  res.setEncoding('utf8');
   port.write('dht:0\n', function (err) {
     if (err) {
       res.end(err.message);
       return;
     }
-
     res.end('온도 및 습도 측정을 중지하였습니다.');
   });
 });
 
 app.get('/dht/action/1', function (req, res) {
+  res.setEncoding('utf8');
   port.write('dht:1\n', function (err) {
     if (err) {
       res.end(err.message);
@@ -177,6 +182,7 @@ app.get('/dht/action/1', function (req, res) {
 });
 
 app.get('/dht/retrieve/0', function (req, res) {
+  res.setEncoding('utf8');
   if (homeData.temper == undefined) {
     res.end('최근 측정된 데이터가 없습니다.');
     return;
@@ -186,6 +192,7 @@ app.get('/dht/retrieve/0', function (req, res) {
 });
 
 app.get('/dht/retrieve/1', function (req, res) {
+  res.setEncoding('utf8');
   if (homeData.humid == undefined) {
     res.end('최근 측정된 데이터가 없습니다.');
     return;
