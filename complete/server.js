@@ -21,7 +21,7 @@ serialPort.list(function (err, ports) {
   });
 });
 
-var port = new serialPort('/dev/cu.wchusbserial1410', {
+var port = new serialPort('/dev/ttyUSB0', {
   baudRate: 115200,
 });
 
