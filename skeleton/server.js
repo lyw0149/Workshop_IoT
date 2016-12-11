@@ -12,7 +12,12 @@ var homeData = {
   secure: undefined,
   dht: undefined,
 };
+
 var lastSecure = undefined;
+
+var port = new serialPort('/dev/cu.wchusbserial1420', {
+  baudRate: 115200,
+});
 
 serialPort.list(function (err, ports) {
   ports.forEach(function (port) {
@@ -22,9 +27,6 @@ serialPort.list(function (err, ports) {
   });
 });
 
-var port = new serialPort('/dev/cu.wchusbserial1420', {
-  baudRate: 115200,
-});
 
 port.on('open', function () {
   console.log('opened');
@@ -37,7 +39,7 @@ port.on('open', function () {
         console.log(data.error);
       } else {
         recvObj.date = new Date();
-        homeData = merge_options(homeData, recvObj);
+        homeData = mergeOptions(homeData, recvObj);
         console.log(homeData);
       }
     }
@@ -54,7 +56,7 @@ function isJsonString(str) {
   return true;
 }
 
-function merge_options(obj1, obj2) {
+function mergeOptions(obj1, obj2) {
   var obj3 = {};
   d = new Date();
   for (var attrname in obj1) { obj3[attrname] = obj1[attrname]; }
@@ -64,7 +66,6 @@ function merge_options(obj1, obj2) {
   return obj3;
 }
 
-app.use(express.static('public'));
 
 app.get('/', function (req, res) {
   res.sendFile(__dirname + '/' + 'index.html');
