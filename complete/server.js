@@ -20,7 +20,9 @@ serialPort.list(function (err, ports) {
   });
 });
 
-var port = new serialPort('/dev/cu.wchusbserial1420');
+var port = new serialPort('/dev/cu.wchusbserial1420',{
+  baudRate: 115200
+});
 
 port.on('open', function () {
   console.log('opened');
