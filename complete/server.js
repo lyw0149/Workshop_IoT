@@ -20,25 +20,25 @@ serialPort.list(function (err, ports) {
   });
 });
 
-//var port = new serialPort('/dev/cu.wchusbserial1420');
-//
-//port.on('open', function () {
-//  console.log('opened');
-//  port.on('data', function (data) {
-//    console.log('Data: ' + data);
-//
-//    if (isJsonString(data)) {
-//      var recvObj = JSON.parse(data);
-//      if (data.error) {
-//        console.log(data.error);
-//      } else {
-//        recvObj.date = new Date();
-//        homeData = mergeOptions(homeData, recvObj);
-//        console.log(homeData);
-//      }
-//    }
-//  });
-//});
+var port = new serialPort('/dev/cu.wchusbserial1420');
+
+port.on('open', function () {
+  console.log('opened');
+  port.on('data', function (data) {
+    console.log('Data: ' + data);
+
+    if (isJsonString(data)) {
+      var recvObj = JSON.parse(data);
+      if (data.error) {
+        console.log(data.error);
+      } else {
+        recvObj.date = new Date();
+        homeData = mergeOptions(homeData, recvObj);
+        console.log(homeData);
+      }
+    }
+  });
+});
 
 function isJsonString(str) {
   try {
