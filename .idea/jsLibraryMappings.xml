@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="JavaScriptLibraryMappings">
-    <file url="file://$PROJECT_DIR$/complete" libraries="{IoT/complete/node_modules}" />
-    <file url="file://$PROJECT_DIR$/skeleton" libraries="{IoT/skeleton/node_modules}" />
-    <includedPredefinedLibrary name="ECMAScript 6" />
-    <includedPredefinedLibrary name="Node.js Core" />
-  </component>
-</project>
